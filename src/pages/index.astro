@@ -1,0 +1,232 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Reviews from '../components/Reviews.astro';
+import { areas, business, faqs, services } from '../data/site';
+import { href } from '../lib/paths';
+import van from '../assets/van.jpg';
+import kia from '../assets/kia.jpg';
+import evoque from '../assets/evoque.jpg';
+
+const title = 'Grand Detailing | Car Detailing in Bedford';
+const description =
+  'Grand Detailing is a car detailing service at 78 Stagsden Road, Bedford, MK43 8PU. Call 07496 014846. Open 9am to 6pm, seven days.';
+---
+
+<Base title={title} description={description} path="/" faq={faqs}>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 13l2-5h14l2 5"></path>
+            <path d="M5 16h.01M19 16h.01"></path>
+            <path d="M4 16a2 2 0 1 0 4 0 2 2 0 0 0-4 0zm12 0a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"></path>
+            <path d="M7 16h10"></path>
+          </svg>
+          {business.category}
+        </p>
+        <h1>Detailing that comes to you.</h1>
+        <p class="lede">
+          Grand Detailing works from 78 Stagsden Road, Bedford. The road is in Bromham.
+          Ryan Porte wrote that Ollie and Luke turned up, and cleaned two vans in the rain.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href={`tel:${business.phoneTel}`}>Call {business.phoneDisplay}</a>
+          <a class="btn btn-ghost" href={href('/projects')}>See the photos</a>
+        </div>
+        <div class="facts">
+          <p class="fact">
+            <strong>On time</strong>
+            <span>Ryan said they turned up when they said they would.</span>
+          </p>
+          <p class="fact">
+            <strong>Inside and out</strong>
+            <span>Ollie Neal had the interior and the exterior detailed.</span>
+          </p>
+          <p class="fact">
+            <strong>5.0 on Google</strong>
+            <span>Two reviews. Both are five stars. Both are from 2023.</span>
+          </p>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <aside class="float-card">
+          <Image
+            src={evoque}
+            alt="Grey Range Rover on gravel after a detail. Photo by Ollie Neal, July 2023."
+            widths={[216]}
+            sizes="108px"
+            quality={70}
+          />
+          <div>
+            <strong>5.0 · 2 reviews</strong>
+            <p>Posted on Google in 2023.</p>
+            <a href={business.mapsUrl} rel="noopener noreferrer">Read them on Google</a>
+          </div>
+        </aside>
+        <div class="photo-frame">
+          <Image
+            src={van}
+            alt="Ford van covered in wash foam on a block-paved drive. Photo by Ryan Porte, August 2023."
+            widths={[400, 672]}
+            sizes="(min-width: 980px) 460px, 92vw"
+            loading="eager"
+            fetchpriority="high"
+            quality={75}
+          />
+        </div>
+      </div>
+    </div>
+    <svg class="seal" viewBox="0 0 120 120" role="img" aria-label="Car detailing in Bedford">
+      <circle cx="60" cy="60" r="58" fill="#f4f1ea"></circle>
+      <circle cx="60" cy="60" r="48" fill="none" stroke="#0a131e" stroke-width="1"></circle>
+      <defs>
+        <path id="ring" d="M60,60 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"></path>
+      </defs>
+      <text fill="#0a131e" font-size="9.5" font-family="Source Sans 3, sans-serif" font-weight="700" letter-spacing="2.4">
+        <textPath href="#ring">CAR DETAILING · BEDFORD ·</textPath>
+      </text>
+      <path d="M60 46 v22 M52 60 l8 8 8-8" fill="none" stroke="#e09700" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="photo-frame">
+        <Image
+          src={kia}
+          alt="White Kia on a gravel drive, with roof rails. Posted by Grand Detailing, July 2023."
+          widths={[360, 476]}
+          sizes="(min-width: 980px) 480px, 92vw"
+          quality={75}
+        />
+      </div>
+      <div>
+        <p class="kicker">How to book</p>
+        <h2>Call. Say the vehicle. They will tell you if they can come.</h2>
+        <ol class="steps">
+          <li>
+            <span class="num">1</span>
+            <span>Phone {business.phoneDisplay}. There is no email on the Google listing.</span>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <span>Say what it is, what you want done, and which road it is on.</span>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <span>The listing says they are open {business.hoursLabel}, every day.</span>
+          </li>
+        </ol>
+        <div class="hero-actions">
+          <a class="btn btn-dark" href={href('/contact')}>Address and hours</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Services</p>
+        <h2>Jobs named on the Google reviews.</h2>
+        <p class="lede" style="margin-top:0">
+          These are the tags and the work customers wrote about. There is no price list on the listing.
+        </p>
+      </div>
+      <div class="cards services">
+        {
+          services.slice(0, 6).map((service) => (
+            <a class="card" href={href(`/services#${service.id}`)}>
+              <h3>{service.title}</h3>
+              <p>{service.summary}</p>
+            </a>
+          ))
+        }
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href={href('/services')}>All the services</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Projects</p>
+        <h2>Photos from the Google profile.</h2>
+        <p>
+          Seven photos were uploaded. Plates are hidden on this site. A Street View frame also sits in Google’s count of eight. That one stays on Google.
+        </p>
+      </div>
+      <div class="gallery three">
+        <figure>
+          <Image src={van} alt="Ford van in wash foam outside a brick house." widths={[336, 672]} sizes="(min-width: 980px) 340px, 92vw" quality={70} />
+          <figcaption>Ford van in wash foam. Ryan Porte, August 2023. He had two vans cleaned in the rain.</figcaption>
+        </figure>
+        <figure>
+          <Image src={kia} alt="White Kia parked on gravel." widths={[320, 476]} sizes="(min-width: 980px) 340px, 92vw" quality={70} />
+          <figcaption>White Kia with roof rails. Posted by Grand Detailing, July 2023.</figcaption>
+        </figure>
+        <figure>
+          <Image src={evoque} alt="Grey Range Rover on a gravel drive." widths={[320, 476]} sizes="(min-width: 980px) 340px, 92vw" quality={70} />
+          <figcaption>Grey Range Rover. Ollie Neal, July 2023. He had the inside and the outside detailed.</figcaption>
+        </figure>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-dark" href={href('/projects')}>Every photo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Reviews</p>
+        <h2>Both Google reviews, in their words.</h2>
+        <p>
+          The listing shows 5.0 from 2 reviews. Nothing here is rewritten. The service tags are the ones each person attached.
+        </p>
+      </div>
+      <Reviews />
+      <div class="hero-actions">
+        <a class="btn btn-dark" href={business.mapsUrl} rel="noopener noreferrer">Open the listing</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Nearby</p>
+        <h2>Bromham, Bedford, and the villages close by.</h2>
+        <p class="lede" style="margin-top:0">
+          Distances are from 78 Stagsden Road to the centre of each place. Grand Detailing has not published a travel limit. Call and ask.
+        </p>
+      </div>
+      <div class="chip-row">
+        {areas.map((area) => (
+          <a class="chip" href={href(`/areas#${area.id}`)}>{area.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Questions</p>
+        <h2>Straight answers.</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

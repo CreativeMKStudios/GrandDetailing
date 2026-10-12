@@ -1,0 +1,49 @@
+---
+import { business, days, nav } from '../data/site';
+import { asset, href } from '../lib/paths';
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <img src={asset('logo.png')} alt="" width="180" height="50" />
+      <p style="margin-top: 0.8rem">
+        {business.category}<br />
+        {business.street}<br />
+        {business.locality} {business.postcode}<br />
+        {business.countryName}
+      </p>
+      <p style="margin-top: 0.7rem">
+        <a href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a><br />
+        {business.hoursLabel}, {business.daysLabel}
+      </p>
+    </div>
+    <div>
+      <strong>Pages</strong>
+      <ul>
+        {nav.map((item) => (
+          <li><a href={href(item.href)}>{item.label}</a></li>
+        ))}
+        <li><a href={href('/privacy')}>Privacy</a></li>
+      </ul>
+    </div>
+    <div>
+      <strong>Hours</strong>
+      <ul>
+        {days.map((day) => (
+          <li>{day}: {business.hoursLabel}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  <div class="wrap fine">
+    <p>
+      Facts on this site were taken from the Grand Detailing Google listing on {business.checked}.
+      Photos were posted on that listing. Number plates are hidden here.
+      The eighth frame in Google’s photo count is a Street View picture of the road, so it stays on Google.
+    </p>
+    <p style="margin-top: 0.6rem">
+      <a href={business.mapsUrl} rel="noopener noreferrer">View the Google listing</a>
+    </p>
+  </div>
+</footer>

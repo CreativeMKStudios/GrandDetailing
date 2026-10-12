@@ -1,0 +1,36 @@
+---
+import { href } from '../lib/paths';
+
+interface Crumb {
+  name: string;
+  path: string;
+}
+
+interface Props {
+  title: string;
+  lede: string;
+  crumbs: Crumb[];
+}
+
+const { title, lede, crumbs } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href={href('/')}>Home</a>
+      {
+        crumbs.map((crumb) => (
+          <>
+            <span aria-hidden="true">/</span>
+            <a href={href(crumb.path)} aria-current="page">
+              {crumb.name}
+            </a>
+          </>
+        ))
+      }
+    </nav>
+    <h1>{title}</h1>
+    <p>{lede}</p>
+  </div>
+</section>

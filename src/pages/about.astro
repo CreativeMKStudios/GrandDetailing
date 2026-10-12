@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { business, days } from '../data/site';
+
+const title = 'About Grand Detailing | Stagsden Road, Bedford';
+const description =
+  'Grand Detailing is a car detailing service at 78 Stagsden Road, Bedford, MK43 8PU. Ollie and Luke are the names on the Google reviews.';
+const crumbs = [{ name: 'About', path: '/about' }];
+---
+
+<Base title={title} description={description} path="/about" crumbs={crumbs}>
+  <PageHero
+    title="The people named on the reviews."
+    lede="Grand Detailing is a car detailing service. The public Google listing has an address, a phone number, hours, two reviews, and seven photos. This page sticks to that."
+    crumbs={crumbs}
+  />
+  <section class="section">
+    <div class="wrap prose" style="max-width: 44rem">
+      <p>
+        The address is {business.street}, {business.locality} {business.postcode}. That part of Stagsden Road is in Bromham. Bedford is the postal town. The plus code on the listing is {business.plusCode}.
+      </p>
+      <p>
+        Google’s category on the listing is “{business.category}”. There is no website link and no email address on it. The phone number is {business.phoneDisplay}.
+      </p>
+      <p>
+        Ryan Porte’s review names Ollie and Luke. They turned up on time and cleaned both of his vans to a high standard, in the rain. He then booked a regular clean.
+      </p>
+      <p>
+        Ollie Neal wrote that his vehicle was detailed inside and out, and that the service and the result surprised him. The owner replied on Google in 2023: “Thanks for leaving a review we're glad you like the final results!” The reply is not signed with a name.
+      </p>
+      <p>
+        Hours on the listing are {business.hoursLabel}, every day. Google also lists a wheelchair-accessible car park. If you need a certain space, say so when you call.
+      </p>
+      <p>
+        This site does not add a year the business opened, a list of products, or a set of prices. None of those are on the listing. If you need a price, phone them.
+      </p>
+      <h2>Hours</h2>
+      <table class="hours">
+        <caption class="sr-only">Opening hours from the Google listing</caption>
+        <tbody>
+          {days.map((day) => (
+            <tr>
+              <th scope="row">{day}</th>
+              <td>{business.hoursLabel}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p>
+        <a class="btn btn-dark" href={`tel:${business.phoneTel}`}>Call {business.phoneDisplay}</a>
+      </p>
+    </div>
+  </section>
+</Base>

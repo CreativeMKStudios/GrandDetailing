@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { areas, business } from '../data/site';
+
+const title = 'Areas around Bedford | Grand Detailing';
+const description =
+  'Grand Detailing is based on Stagsden Road in Bromham, Bedford MK43 8PU. Nearby places include Biddenham, Oakley, Kempston, and Bedford town. Call to check your road.';
+const crumbs = [{ name: 'Areas', path: '/areas' }];
+---
+
+<Base title={title} description={description} path="/areas" crumbs={crumbs}>
+  <PageHero
+    title="Bedford, and the roads around the base."
+    lede="The pin is on Stagsden Road in Bromham. Distances below are from that pin to the centre of each place, measured in a straight line. They are not a promise of travel. The listing has no mile limit. Call and name the road."
+    crumbs={crumbs}
+  />
+  <section class="section">
+    <div class="wrap" style="max-width: 46rem">
+      {
+        areas.map((area) => (
+          <article class="area" id={area.id}>
+            <h2>{area.name}</h2>
+            <p class="distance">{area.distance}</p>
+            <p>{area.text}</p>
+          </article>
+        ))
+      }
+      <p style="margin-top: 1.6rem">
+        Milton Keynes is about 12 miles away. It is not named on the listing. Do not assume they travel that far.
+      </p>
+      <p style="margin-top: 1rem">
+        <a class="btn btn-dark" href={`tel:${business.phoneTel}`}>Call {business.phoneDisplay}</a>
+      </p>
+    </div>
+  </section>
+</Base>
