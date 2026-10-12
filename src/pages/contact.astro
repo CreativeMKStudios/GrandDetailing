@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { business, days, faqs } from '../data/site';
+
+const title = 'Contact Grand Detailing | 07496 014846';
+const description =
+  'Call Grand Detailing on 07496 014846. 78 Stagsden Road, Bedford, MK43 8PU. Open 9am to 6pm, seven days. No public email on the listing.';
+const crumbs = [{ name: 'Contact', path: '/contact' }];
+const contactFaqs = faqs.filter((item) =>
+  ['How do I book?', 'What time are you open?', 'How much does it cost?', 'Is the car park step-free?'].includes(item.q),
+);
+---
+
+<Base title={title} description={description} path="/contact" crumbs={crumbs} faq={contactFaqs}>
+  <PageHero
+    title="Call to book."
+    lede="The Google listing has a phone number and no email. A call is the way to reach them."
+    crumbs={crumbs}
+  />
+  <section class="section">
+    <div class="wrap contact-grid">
+      <div class="panel">
+        <p class="kicker">Phone</p>
+        <p style="margin: 0.4rem 0 1rem">
+          <a class="phone-link" href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a>
+        </p>
+        <p>Have these ready before you dial:</p>
+        <ul>
+          <li>The vehicle, such as a car or a van</li>
+          <li>Inside, outside, or both</li>
+          <li>Your road</li>
+          <li>The day you want</li>
+        </ul>
+        <p style="margin-top: 1rem">
+          <a class="btn btn-dark" href={`tel:${business.phoneTel}`}>Call now</a>
+        </p>
+      </div>
+      <div class="panel">
+        <p class="kicker">Address</p>
+        <p style="margin-top: 0.5rem">
+          Grand Detailing<br />
+          {business.street}<br />
+          {business.locality}<br />
+          {business.postcode}<br />
+          {business.countryName}
+        </p>
+        <p style="margin-top: 0.7rem">Plus code: {business.plusCode}</p>
+        <p style="margin-top: 0.7rem">The road is in Bromham. Bedford is the postal town.</p>
+        <p style="margin-top: 1rem; display:flex; flex-wrap:wrap; gap:0.6rem">
+          <a class="btn btn-dark" href={business.directionsUrl} rel="noopener noreferrer">Google directions</a>
+          <a class="btn btn-dark" href={business.appleMapsUrl} rel="noopener noreferrer">Apple Maps</a>
+        </p>
+      </div>
+      <div>
+        <table class="hours">
+          <caption class="sr-only">Opening hours</caption>
+          <tbody>
+            {days.map((day) => (
+              <tr>
+                <th scope="row">{day}</th>
+                <td>{business.hoursLabel}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="note" style="margin-top: 0.7rem">
+          Google lists a wheelchair-accessible car park. Say what you need when you call.
+        </p>
+      </div>
+      <div class="faq">
+        {contactFaqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

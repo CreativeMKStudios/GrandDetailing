@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { business } from '../data/site';
+
+const title = 'Privacy | Grand Detailing';
+const description =
+  'Grand Detailing’s site does not use cookies or a contact form. Booking is by phone on 07496 014846.';
+const crumbs = [{ name: 'Privacy', path: '/privacy' }];
+---
+
+<Base title={title} description={description} path="/privacy" crumbs={crumbs}>
+  <PageHero
+    title="Privacy"
+    lede="This site does not set cookies, does not run ads, and does not keep a contact form."
+    crumbs={crumbs}
+  />
+  <section class="section">
+    <div class="wrap prose" style="max-width: 44rem">
+      <p>
+        Grand Detailing, {business.street}, {business.locality} {business.postcode}, is the business this site is about. The phone number is {business.phoneDisplay}.
+      </p>
+      <p>
+        If you call that number, the call is between you and the business. This website does not record it and does not store a message, because there is nowhere to type one.
+      </p>
+      <p>
+        Pages are static. There is no account, no newsletter, and no analytics tool on the site. Your browser may still keep its own history. That is your browser, not this site.
+      </p>
+      <p>
+        Photos were taken from the public Google listing for Grand Detailing. Number plates are hidden. The people named next to the photos are the Google accounts that posted them: Ryan Porte, Ollie Neal, and the business itself.
+      </p>
+      <p>
+        Map links leave this site and open Google Maps or Apple Maps. Those services have their own privacy rules.
+      </p>
+      <p>
+        To ask about the words or photos on this site, call {business.phoneDisplay}.
+      </p>
+    </div>
+  </section>
+</Base>

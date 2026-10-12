@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import van from '../assets/van.jpg';
+import kia from '../assets/kia.jpg';
+import evoque from '../assets/evoque.jpg';
+import wheel from '../assets/wheel.jpg';
+import interior from '../assets/interior.jpg';
+import fuel from '../assets/fuel.jpg';
+import logo from '../assets/logo.png';
+
+const title = 'Detailing Photos in Bedford | Grand Detailing';
+const description =
+  'The seven photos on the Grand Detailing Google profile: a Ford van, a white Kia, a grey Range Rover, an interior, a wheel, a fuel filler, and the logo.';
+const crumbs = [{ name: 'Projects', path: '/projects' }];
+
+const shots = [
+  {
+    src: van,
+    alt: 'Ford van covered in wash foam on a block-paved drive, in front of a brick house.',
+    widths: [400, 672],
+    caption:
+      'Ford van in wash foam, on a block-paved drive. Ryan Porte posted this in August 2023. His review says Ollie and Luke cleaned both vans in the rain.',
+  },
+  {
+    src: kia,
+    alt: 'White Kia with roof rails, parked on gravel between trees and a fence.',
+    widths: [360, 476],
+    caption:
+      'White Kia with roof rails, on gravel. Grand Detailing posted this in July 2023. The listing does not add a caption.',
+  },
+  {
+    src: evoque,
+    alt: 'Grey Range Rover parked on a gravel drive, with houses behind it.',
+    widths: [360, 476],
+    caption:
+      'Grey Range Rover on gravel. Ollie Neal posted this in July 2023 with his review of an interior and exterior detail.',
+  },
+  {
+    src: wheel,
+    alt: 'Black alloy wheel and grey wheel arch of a Range Rover, on gravel.',
+    widths: [360, 476],
+    caption:
+      'Front wheel and arch of the same Range Rover. Ollie Neal, July 2023.',
+  },
+  {
+    src: interior,
+    alt: 'Driver’s view inside a Kia, showing the steering wheel, dashboard, and gear lever.',
+    widths: [360, 476],
+    caption:
+      'Driver’s seat of a Kia. The wheel, dash, and gear lever are in the frame. Grand Detailing posted this in July 2023.',
+  },
+  {
+    src: fuel,
+    alt: 'Open fuel filler on a white car, with water droplets on the paint.',
+    widths: [420, 846],
+    caption:
+      'Fuel filler on white paint, with water on the panel. Grand Detailing posted this in July 2023. The listing does not say which job it belongs to.',
+  },
+  {
+    src: logo,
+    alt: 'Grand Detailing logo: a gold car outline above white lettering, on a dark navy background.',
+    widths: [404],
+    caption: 'The Grand Detailing logo, as posted on the Google profile in July 2023.',
+  },
+];
+---
+
+<Base title={title} description={description} path="/projects" crumbs={crumbs}>
+  <PageHero
+    title="The work on the Google profile."
+    lede="These are the seven photos uploaded to the listing. Number plates are hidden. Google also shows a Street View picture of the road in the photo count. That picture is Google’s, so it is not copied here."
+    crumbs={crumbs}
+  />
+  <section class="section">
+    <div class="wrap gallery">
+      {
+        shots.map((shot) => (
+          <figure>
+            <Image
+              src={shot.src}
+              alt={shot.alt}
+              widths={shot.widths}
+              sizes="(min-width: 800px) 720px, 92vw"
+              quality={75}
+            />
+            <figcaption>{shot.caption}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </section>
+</Base>

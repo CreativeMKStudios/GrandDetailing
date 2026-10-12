@@ -1,0 +1,23 @@
+{
+  "name": "Grand Detailing",
+  "short_name": "Grand Detailing",
+  "description": "Car detailing service at 78 Stagsden Road, Bedford, MK43 8PU.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a131e",
+  "theme_color": "#0a131e",
+  "lang": "en-GB",
+  "icons": [
+    {
+      "src": "/logo-square.png",
+      "sizes": "500x500",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { business, services } from '../data/site';
+
+const title = 'Detailing Services in Bedford | Grand Detailing';
+const description =
+  'Washes, interior work, waxing, wheels, and van cleans named on Grand Detailing’s Google reviews. Call 07496 014846 for a price.';
+const crumbs = [{ name: 'Services', path: '/services' }];
+---
+
+<Base title={title} description={description} path="/services" crumbs={crumbs}>
+  <PageHero
+    title="What customers have actually booked."
+    lede="Google lets a reviewer tag the jobs from a visit. These are the tags on the two Grand Detailing reviews, plus the van work and the regular clean Ryan Porte wrote about. Call for a price. None are published."
+    crumbs={crumbs}
+  />
+  <section class="section">
+    <div class="wrap" style="display:grid; gap: 1.4rem; max-width: 48rem">
+      {
+        services.map((service) => (
+          <article class="area" id={service.id}>
+            <h2>{service.title}</h2>
+            <p>{service.text}</p>
+          </article>
+        ))
+      }
+      <p>
+        <a class="btn btn-dark" href={`tel:${business.phoneTel}`}>Call {business.phoneDisplay}</a>
+      </p>
+    </div>
+  </section>
+</Base>

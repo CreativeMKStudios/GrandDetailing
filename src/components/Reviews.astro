@@ -1,0 +1,35 @@
+---
+import { reviews } from '../data/site';
+---
+
+<div class="review-list">
+  {
+    reviews.map((review) => (
+      <article class="review">
+        <header>
+          <div>
+            <strong>{review.name}</strong>
+            <div>Google review, {review.when}</div>
+          </div>
+          <p class="stars" aria-label={`${review.stars} out of 5 stars`}>
+            {'★'.repeat(review.stars)}
+            <span class="sr-only">{review.stars} out of 5</span>
+          </p>
+        </header>
+        <blockquote>
+          <p>{review.text}</p>
+        </blockquote>
+        {'ownerReply' in review && review.ownerReply && (
+          <p class="owner">
+            <strong>Reply from the owner, 2023.</strong> {review.ownerReply}
+          </p>
+        )}
+        <ul class="tags" aria-label={`Services tagged by ${review.name}`}>
+          {review.tags.map((tag) => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+      </article>
+    ))
+  }
+</div>
