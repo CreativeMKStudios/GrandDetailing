@@ -1,11 +1,12 @@
 ---
 import { business, days, nav } from '../data/site';
+import { asset, href } from '../lib/paths';
 ---
 
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div>
-      <img src="/logo.png" alt="" width="180" height="50" />
+      <img src={asset('logo.png')} alt="" width="180" height="50" />
       <p style="margin-top: 0.8rem">
         {business.category}<br />
         {business.street}<br />
@@ -21,9 +22,9 @@ import { business, days, nav } from '../data/site';
       <strong>Pages</strong>
       <ul>
         {nav.map((item) => (
-          <li><a href={item.href}>{item.label}</a></li>
+          <li><a href={href(item.href)}>{item.label}</a></li>
         ))}
-        <li><a href="/privacy">Privacy</a></li>
+        <li><a href={href('/privacy')}>Privacy</a></li>
       </ul>
     </div>
     <div>

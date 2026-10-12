@@ -1,11 +1,12 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// Change `site` if the live domain is different. Canonical URLs, the sitemap,
-// and Open Graph tags all use this origin.
+// Live site is the GitHub Pages project URL. Change `site` and `base` together
+// if a custom domain is added later.
 export default defineConfig({
-  site: 'https://granddetailing.co.uk',
-  trailingSlash: 'never',
+  site: 'https://creativemkstudios.github.io',
+  base: '/GrandDetailing',
+  trailingSlash: 'always',
   compressHTML: true,
   integrations: [
     sitemap({

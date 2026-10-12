@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Reviews from '../components/Reviews.astro';
 import { areas, business, faqs, services } from '../data/site';
+import { href } from '../lib/paths';
 import van from '../assets/van.jpg';
 import kia from '../assets/kia.jpg';
 import evoque from '../assets/evoque.jpg';
@@ -32,7 +33,7 @@ const description =
         </p>
         <div class="hero-actions">
           <a class="btn btn-gold" href={`tel:${business.phoneTel}`}>Call {business.phoneDisplay}</a>
-          <a class="btn btn-ghost" href="/projects">See the photos</a>
+          <a class="btn btn-ghost" href={href('/projects')}>See the photos</a>
         </div>
         <div class="facts">
           <p class="fact">
@@ -119,7 +120,7 @@ const description =
           </li>
         </ol>
         <div class="hero-actions">
-          <a class="btn btn-dark" href="/contact">Address and hours</a>
+          <a class="btn btn-dark" href={href('/contact')}>Address and hours</a>
         </div>
       </div>
     </div>
@@ -137,7 +138,7 @@ const description =
       <div class="cards services">
         {
           services.slice(0, 6).map((service) => (
-            <a class="card" href={`/services#${service.id}`}>
+            <a class="card" href={href(`/services#${service.id}`)}>
               <h3>{service.title}</h3>
               <p>{service.summary}</p>
             </a>
@@ -145,7 +146,7 @@ const description =
         }
       </div>
       <div class="hero-actions">
-        <a class="btn btn-gold" href="/services">All the services</a>
+        <a class="btn btn-gold" href={href('/services')}>All the services</a>
       </div>
     </div>
   </section>
@@ -174,7 +175,7 @@ const description =
         </figure>
       </div>
       <div class="hero-actions">
-        <a class="btn btn-dark" href="/projects">Every photo</a>
+        <a class="btn btn-dark" href={href('/projects')}>Every photo</a>
       </div>
     </div>
   </section>
@@ -206,7 +207,7 @@ const description =
       </div>
       <div class="chip-row">
         {areas.map((area) => (
-          <a class="chip" href={`/areas#${area.id}`}>{area.name}</a>
+          <a class="chip" href={href(`/areas#${area.id}`)}>{area.name}</a>
         ))}
       </div>
     </div>

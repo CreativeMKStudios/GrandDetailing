@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { href } from '../lib/paths';
 
 const title = 'Page not found | Grand Detailing';
 const description = 'That page is not on the Grand Detailing site. Call 07496 014846 or go back to the home page.';
@@ -12,7 +13,7 @@ const description = 'That page is not on the Grand Detailing site. Call 07496 01
       <h1>That page is not here.</h1>
       <p>Try the home page, or call 07496 014846.</p>
       <p>
-        <a class="btn btn-dark" href="/">Back home</a>
+        <a class="btn btn-dark" href={href('/')}>Back home</a>
       </p>
     </div>
   </section>

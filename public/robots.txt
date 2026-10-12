@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://granddetailing.co.uk/sitemap-index.xml
+Sitemap: https://creativemkstudios.github.io/GrandDetailing/sitemap-index.xml
